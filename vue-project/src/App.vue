@@ -11,19 +11,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>John</td>
-          <td>Doe</td>
-          <td>1990-01-01</td>
+        <tr v-for="row in rows" :key="row.id">
+          <td>{{ row.id }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.surname }}</td>
+          <td>{{ row.birthday }}</td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Jane</td>
-          <td>Smith</td>
-          <td>1995-05-15</td>
-        </tr>
-        <!-- Добавьте больше строк, если необходимо -->
       </tbody>
     </table>
   </div>
@@ -32,11 +25,27 @@
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      rows: []
+    };
+  },
+  created() {
+    
+    for (let i = 1; i <= 20; i++) {
+      this.rows.push({
+        id: i,
+        name: `Name ${i}`,
+        surname: `Surname ${i}`,
+        birthday: `1990-01-${i < 10 ? '0' + i : i}`
+      });
+    }
+  }
 };
 </script>
 
 <style>
-/* Можете добавить стилизацию таблицы здесь, если необходимо */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -48,6 +57,6 @@ th, td {
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: #322d2d;
 }
 </style>
